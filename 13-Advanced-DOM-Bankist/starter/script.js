@@ -7,6 +7,8 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btn_scrollTo = document.querySelector('.btn--scroll-to');
+const section_one = document.getElementById('section--1');
 
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -29,3 +31,10 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+/* ALL functions on this section */
+const funSmoothScroll = function(e){
+
+}
+
+/* EVENT LISTENERS BUTTONS */
+btn_scrollTo.addEventListener('click', funSmoothScroll);
