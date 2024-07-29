@@ -20,8 +20,10 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++)
-  btnsOpenModal[i].addEventListener('click', openModal);
+// for (let i = 0; i < btnsOpenModal.length; i++)
+//   btnsOpenModal[i].addEventListener('click', openModal);
+
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -32,9 +34,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 /* ALL functions on this section */
-const funSmoothScroll = function(e){
-
-}
+const funSmoothScroll = function (e) {};
 
 /* EVENT LISTENERS BUTTONS */
 btn_scrollTo.addEventListener('click', funSmoothScroll);
