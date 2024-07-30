@@ -34,7 +34,16 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-const funSmoothScroll = function (e) {};
+const funSmoothScroll = function (e) {
+  const coordenadas = section_one.getBoundingClientRect();
+  // window.scrollTo({
+  //   left: coordenadas.left + window.pageXOffset,
+  //   top: coordenadas.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+  
+};
+
 const funCreateDots = function () {
   slides.forEach(function (_, index) {
     dotsContainer.insertAdjacentHTML(
@@ -44,6 +53,7 @@ const funCreateDots = function () {
   });
 };
 funCreateDots();
+
 const activateDot = function (slide) {
   document
     .querySelectorAll('.dots__dot')
