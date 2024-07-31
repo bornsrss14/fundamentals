@@ -14,6 +14,9 @@ const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
 const dotsContainer = document.querySelector('.dots');
 const dots = document.querySelectorAll('.dots__dot');
+const linksContainer = document.querySelector('.nav__links');
+const containerTabs = document.querySelector('.operations__tab-container');
+const allTabs = document.querySelectorAll('.operations__tab');
 
 /* FUNCIONES GENERALES */
 const openModal = function () {
@@ -34,14 +37,44 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/* 1. Smooth Scroll  */
 const funSmoothScroll = function (e) {
   const coordenadas = section_one.getBoundingClientRect();
-  // window.scrollTo({
-  //   left: coordenadas.left + window.pageXOffset,
-  //   top: coordenadas.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
-  
+  window.scrollTo({
+    left: coordenadas.left + window.pageXOffset,
+    top: coordenadas.top + window.pageYOffset,
+    behavior: 'smooth',
+  });
+};
+
+const smoothLinks = function (eve) {
+  /* matching strategy */
+  if (eve.target.classList.contains('nav__link')) {
+    eve.preventDefault();
+    const id = eve.target.getAttribute('href');
+    const section = document.querySelector(id);
+    if (section) {
+      const coordenadas = section.getBoundingClientRect();
+      window.scrollTo({
+        left: coordenadas.left + window.pageXOffset,
+        top: coordenadas.top + window.pageYOffset,
+        behavior: 'smooth',
+      });
+      // document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+};
+
+const funTabsInter = function (eve) {
+  const clicked = eve.target.closest('.operations__tab');
+  if (!clicked) return;
+  allTabs.forEach(tab => {
+    tab.classList.remove('operations__tab--active');
+  });
+  clicked.classList.add('operations__tab--active');
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 };
 
 const funCreateDots = function () {
@@ -116,3 +149,5 @@ document.addEventListener('keydown', function (ev) {
     funNextSlide();
   }
 });
+linksContainer.addEventListener('click', smoothLinks);
+containerTabs.addEventListener('click', funTabsInter);
